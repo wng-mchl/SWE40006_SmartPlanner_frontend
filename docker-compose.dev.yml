@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      args:
+        # pass the env variable to the build stage
+        # this replaces the const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`) to const response = await fetch(`http://localhost:3000/api/auth/login`) in the js output of the built image
+        # at runtime, nginx only serves the static frontend files, no env can be injected
+        VITE_API_URL: http://localhost:3000 
+    container_name: smartplanner-frontend
+    # stop running container if execute cmd "docker compose stop"
+    # otherwise restart even when container crashes
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    # env_file:
+    #   - ./smartplanner-src/.env
+    networks:
+      - smartplanner
+
+networks:
+  smartplanner:
+    external: true
+    driver: bridge

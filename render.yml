@@ -1,0 +1,13 @@
+services:
+  # setup frontend web service on Render
+  - type: web
+    name: smartplanner-frontend
+    # set runtime language to Docker so it builds the image using the defined Dockerfile
+    runtime: docker
+    dockerfilePath: Dockerfile
+    # do not deploy before CI checks and database migrations are successful
+    autoDeploy: false
+    envVars:
+      # need to manually add VITE_API_KEY as env vars in frontend service
+      - key: VITE_API_URL
+        sync: false
