@@ -15,12 +15,11 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-    # env_file:
-    #   - ./smartplanner-src/.env
     networks:
       - smartplanner
 
 networks:
   smartplanner:
+    # join the existing network created by backend's docker-compose.dev.yml
     external: true
     driver: bridge

@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      args:
+        # pass the env variable to the build stage
+        # this replaces the const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`) to const response = await fetch(`http://EC2-instance-ip/api/auth/login`) in the js output of the built image
+        # at runtime, nginx only serves the static frontend files, no env can be injected
+        VITE_API_URL: ${VITE_API_URL}
+    container_name: smartplanner-frontend-prod
+    # avoid downtime by restarting the container if it crashes (unhandled exceptions/out of memory etc.)
+    # app stays dead without restart: always, and need SSH to the instance to restart the container
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - smartplanner
+
+networks:
+  smartplanner:
+    # join the existing network created by backend's docker-compose.prod.yml
+    external: true
+    driver: bridge
