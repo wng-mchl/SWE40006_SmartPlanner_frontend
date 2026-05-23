@@ -103,7 +103,7 @@
       <div class="dash-header">
         <div>
           <h1 class="dash-h">
-            Good day, {{ auth.user?.name }} <Sparkle size="20" />
+            Welcome, {{ auth.user?.name }} <Sparkle size="20" />
           </h1>
           <p class="dash-sub">
             {{ todayStr }} - {{ tasks.totalPending }} tasks pending
