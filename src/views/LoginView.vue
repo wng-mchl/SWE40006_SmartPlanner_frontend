@@ -7,7 +7,7 @@
           <span class="brand-name">SmartPlanner</span>
         </div>
         <h1 class="ll-h">Plan smarter.<br/><em>Not harder.</em></h1>
-        <p class="ll-p">An AI-assisted weekly planner that breaks your tasks into subtasks, tracks your progress, and keeps your deadlines in sight.</p>
+        <p class="ll-p">An AI-assisted weekly planner that breaks your tasks into subtasks, tracks progress, and keeps your deadlines in sight.</p>
         <div class="features">
           <div class="feat" v-for="f in features" :key="f.icon">
             <ul>
