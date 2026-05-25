@@ -13,6 +13,7 @@ services:
     # avoid downtime by restarting the container if it crashes (unhandled exceptions/out of memory etc.)
     # app stays dead without restart: always, and need SSH to the instance to restart the container
     restart: always
+    stop_grace_period: 30s
     ports:
       - "80:80"
     networks:
