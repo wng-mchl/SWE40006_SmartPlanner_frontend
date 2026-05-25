@@ -65,7 +65,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/SWE40006_SmartPlanner/smartplanner-src
+            cd ~/SWE40006_SmartPlanner_frontend
             git pull origin main
             docker compose -f docker-compose.prod.yml up -d --build
 
