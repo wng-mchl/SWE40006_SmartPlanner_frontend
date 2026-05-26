@@ -35,6 +35,12 @@ jobs:
       - name: Snyk IaC test
         run: snyk iac test || true
 
+      - name: Build Docker image for container scan
+        run: docker build -t smartplanner-frontend:snyk .
+
+      - name: Snyk Container test
+        run: snyk container test smartplanner-frontend:snyk --file=Dockerfile || true
+
       - name: Upload Snyk Code result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         if: always()
