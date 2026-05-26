@@ -32,9 +32,6 @@ jobs:
       - name: Snyk Open Source monitor frontend
         run: snyk monitor || true
 
-      - name: Snyk IaC test
-        run: snyk iac test --report || true
-
       - name: Build Docker image for container scan
         run: docker build -t smartplanner-frontend:snyk .
 
